@@ -19,6 +19,7 @@ These are the routes used so far.
 - /categorias
 - /categorias/add
 - /categorias/edit
+- /categorias/deletar
 
 
 More routes will be added soon. :D
