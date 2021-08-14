@@ -1,0 +1,28 @@
+{
+  "name": "blog-mongo",
+  "version": "1.0.0",
+  "description": "Making a blog with NodeJS, ExpressJS, Handlebars and Vanilla Javascript.",
+  "main": "app.js",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.13.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafael-torraca/blog-mongo.git"
+  },
+  "keywords": [],
+  "author": "Rafael Torraca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafael-torraca/blog-mongo/issues"
+  },
+  "homepage": "https://github.com/rafael-torraca/blog-mongo#readme"
+}
