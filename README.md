@@ -17,7 +17,8 @@ These are the routes used so far.
 - /admin/index
 - /admin/posts
 - /categorias
-- /categproas/add
+- /categorias/add
+- /categorias/edit
 
 
 More routes will be added soon. :D
