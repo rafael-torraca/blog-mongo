@@ -19,7 +19,10 @@ These are the routes used so far.
 - /categorias
 - /categorias/add
 - /categorias/edit
-- /categorias/deletar
+- /categorias/del
+- /postagens
+- /postagens/add
+- /postagens/edit
 
 
 More routes will be added soon. :D
