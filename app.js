@@ -2,6 +2,7 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const app = express();
 const admin = require("./routes/admin");
+const usuario = require("./routes/usuario");
 // const teste = require("./routes/teste");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -11,7 +12,8 @@ require("./models/Postagem");
 const Postagem = mongoose.model("postagens");
 require("./models/Categoria");
 const Categoria = mongoose.model("categorias");
-
+const passport = require("passport");
+require("./config/auth")(passport);
 
 // Config
 // Sessao
@@ -22,12 +24,17 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 // Middleware
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  res.locals.user = req.user || null;
   next();
 });
 
@@ -129,9 +136,26 @@ app.get("/categorias", (req, res) => {
 //     })
 // })
 
-// aprendendo que o then/catch eh
+
+// app.get("/categorias/:slug", (req, res) => {
+//   async function renderPosts() {
+//     try {
+//       const categoria = await Categoria.findOne({ slug: req.params.slug });
+//       if (categoria) {
+//         const postagens = await Postagem.find({ categoria: categoria._id });
+//         res.render("categorias/postagens", { categoria: categoria, postagens: postagens.map(postagem => postagem.toJSON()) });
+//       }
+//     } catch (err) {
+//       req.flash("error_msg", "Houve um erro ao listar os posts!");
+//       res.redirect("/");
+//     }
+//   }
+//   renderPosts();
+// });
+
+// aprendendo que o then/catch eh mei ruim
 app.get("/categorias/:slug", (req, res) => {
-  async function renderPosts() {
+  (async () => {
     try {
       const categoria = await Categoria.findOne({ slug: req.params.slug });
       if (categoria) {
@@ -142,8 +166,7 @@ app.get("/categorias/:slug", (req, res) => {
       req.flash("error_msg", "Houve um erro ao listar os posts!");
       res.redirect("/");
     }
-  }
-  renderPosts();
+  })()
 });
 
 
@@ -153,6 +176,7 @@ app.get("/404", (req, res) => {
 });
 
 app.use("/admin", admin);
+app.use("/usuario", usuario);
 
 const PORT = 3000;
 app.listen(PORT, () => {

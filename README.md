@@ -31,8 +31,11 @@ More routes will be added soon. :D
 
 These are the dependencies used so far.
 
+- bcryptjs
 - connect-flash
 - express
 - express-handlebars
 - express-session
 - mongoose
+- passport
+- passport-local
