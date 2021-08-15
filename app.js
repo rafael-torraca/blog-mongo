@@ -12,7 +12,8 @@ require("./models/Postagem");
 const Postagem = mongoose.model("postagens");
 require("./models/Categoria");
 const Categoria = mongoose.model("categorias");
-
+const passport = require("passport");
+require("./config/auth")(passport);
 
 // Config
 // Sessao
@@ -23,12 +24,17 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 // Middleware
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  res.locals.user = req.user || null;
   next();
 });
 
@@ -147,7 +153,7 @@ app.get("/categorias", (req, res) => {
 //   renderPosts();
 // });
 
-// aprendendo que o then/catch eh
+// aprendendo que o then/catch eh mei ruim
 app.get("/categorias/:slug", (req, res) => {
   (async () => {
     try {
