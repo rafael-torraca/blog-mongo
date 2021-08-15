@@ -14,6 +14,7 @@ require("./models/Categoria");
 const Categoria = mongoose.model("categorias");
 const passport = require("passport");
 require("./config/auth")(passport);
+const db = require("./config/db");
 
 // Config
 // Sessao
@@ -57,7 +58,7 @@ app.set("view engine", "handlebars");
 // Mongoose
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://localhost/blogapp")
+  .connect(db.mongoURI)
   .then(() => {
     console.log("Conectado ao mongo!");
   })
@@ -178,7 +179,7 @@ app.get("/404", (req, res) => {
 app.use("/admin", admin);
 app.use("/usuario", usuario);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Servidor rodando em: ");
   console.log("http://localhost:3000");
