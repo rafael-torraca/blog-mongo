@@ -7,8 +7,6 @@ require("../models/Postagem");
 const Postagem = mongoose.model("postagens");
 const { eAdmin } = require("../helpers/eAdmin");
 
-
-
 router.get("/", eAdmin, (req, res) => {
   res.render("admin/index");
 });
@@ -306,6 +304,5 @@ router.post("/postagens/del", (req, res) => {
       res.redirect("/admin/postagens");
     });
 });
-
 
 module.exports = router;

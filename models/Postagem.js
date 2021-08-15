@@ -4,29 +4,29 @@ const Schema = mongoose.Schema;
 const Postagem = new Schema({
   titulo: {
     type: String,
-    required: true
+    required: true,
   },
   slug: {
     type: String,
-    required: true
+    required: true,
   },
   descricao: {
     type: String,
-    required: true
+    required: true,
   },
   conteudo: {
     type: String,
-    required: true
+    required: true,
   },
   categoria: {
     type: Schema.Types.ObjectId,
     ref: "categorias",
-    required: true
+    required: true,
   },
   data: {
     type: Date,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 });
 
 mongoose.model("postagens", Postagem);

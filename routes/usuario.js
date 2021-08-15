@@ -58,7 +58,7 @@ router.post("/registro", (req, res) => {
           const newUser = new Usuario({
             nome: req.body.nome,
             email: req.body.email,
-            senha: req.body.senha
+            senha: req.body.senha,
           });
 
           if (newUser.email === "admin@admin.com") {
@@ -75,8 +75,8 @@ router.post("/registro", (req, res) => {
               newUser.save();
               req.flash("success_msg", "Usuario criado!");
               res.redirect("/");
-            })
-          })
+            });
+          });
         }
       } catch (err) {
         console.error(err);
@@ -89,65 +89,18 @@ router.get("/login", (req, res) => {
   res.render("usuario/login");
 });
 
-
 router.post("/login", (req, res, next) => {
-
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/usuario/login",
-    failureFlash: true
-  })(req, res, next)
-})
-
+    failureFlash: true,
+  })(req, res, next);
+});
 
 router.get("/logout", (req, res) => {
   req.logout();
   req.flash("success_msg", "Deslogado com sucesso!!");
   res.redirect("/");
-})
-
-// Usuario.findOne({ email: req.body.email })
-//   .then((user) => {
-//     if (user) {
-//       req.flash("error_msg", "O email já existe!");
-//       res.redirect("/usuario/registro");
-//     } else {
-//       const newUser = new Usuario({
-//         nome: req.body.nome,
-//         email: req.body.email,
-//         senha: req.body.senha,
-//       });
-
-//       bcrypt.genSalt(10, (error, salt) => {
-//         bcrypt.hash(newUser.senha, salt, (error, hash) => {
-//           if (error) {
-//             req.flash("error_msg", "Erro durante hash senha!");
-//             res.redirect("/");
-//           }
-//           newUser.senha = hash;
-//           newUser
-//             .save()
-//             .then(() => {
-//               req.flash("success_msg", "Usuário criado com sucesso!");
-//               res.redirect("/");
-//             })
-//             .catch((error) => {
-//               console.log(error);
-//               req.flash(
-//                 "error_msg",
-//                 "Erro ao criar usuário. Tente novamente!"
-//               );
-//               res.redirect("/usuario/registro");
-//             });
-//         });
-//       });
-//     }
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//     req.flash("error_msg", "Houve um erro interno!");
-//     res.redirect("/");
-//   });
-
+});
 
 module.exports = router;

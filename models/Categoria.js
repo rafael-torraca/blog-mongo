@@ -6,17 +6,16 @@ const Schema = mongoose.Schema;
 const Categoria = new Schema({
   nome: {
     type: String,
-    require: true
+    require: true,
   },
   slug: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    default: Date.now()
-  }
-})
-
+    default: Date.now(),
+  },
+});
 
 mongoose.model("categorias", Categoria);

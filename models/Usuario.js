@@ -8,17 +8,16 @@ const Usuario = new Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   eAdmin: {
     type: Number,
-    default: 0
+    default: 0,
   },
   senha: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
-
 
 mongoose.model("usuarios", Usuario);
