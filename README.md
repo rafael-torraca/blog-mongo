@@ -1,3 +1,8 @@
+# Deploy
+
+Deployed in heroku:
+https://arcane-badlands-43060.herokuapp.com/
+
 # blog-mongo
 
 Blog being built with the technologies below: 
