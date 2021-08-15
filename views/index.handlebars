@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="container">
+    <h1 class="display-4">
+      Bem-vindo ao Blog :)
+    </h1>
+    <p class="lead">
+      Aplicação criada com o intuito de Aprender NodeJS, ExpressJS e MongoDB
+    </p>
+    <hr class="my-4" />
+    <p>
+      Você pode postar o que quiser. :D
+    </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">
+        Crie uma conta
+      </a>
+    </p>
+  </div>
+</div>
+<br>
+<h2>
+  Postagens recentes:
+</h2>
+{{#each postagens}}
+  <div class="card mt-4">
+    <div class="card-body">
+      <h3>
+        {{titulo}}
+      </h3>
+      <p>
+        {{descricao}}
+      </p>
+      <a href="/postagem/{{slug}}">
+        <button class="btn btn-info">
+          Leia mais
+        </button>
+      </a>
+      <hr />
+      <small>
+        Categoria:
+        {{categoria.nome}}
+      </small>
+      <br />
+      <small>
+        Data de publicação:
+        {{data}}
+      </small>
+    </div>
+  </div>
+{{else}}
+  <h5>
+    Nenhuma postagem.
+  </h5>
+{{/each}}
