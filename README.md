@@ -23,7 +23,7 @@ These are the routes used so far.
 - /postagens
 - /postagens/add
 - /postagens/edit
-
+- já me perdi no tanto de rota que tem
 
 More routes will be added soon. :D
 
