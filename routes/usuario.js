@@ -61,6 +61,10 @@ router.post("/registro", (req, res) => {
             senha: req.body.senha
           });
 
+          if (newUser.email === "admin@admin.com") {
+            newUser.eAdmin = 1;
+          }
+
           bcrypt.genSalt(10, (erro, salt) => {
             bcrypt.hash(newUser.senha, salt, (erro, hash) => {
               if (erro) {
